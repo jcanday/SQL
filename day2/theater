@@ -1,0 +1,99 @@
+CREATE TABLE IF NOT EXISTS customer(
+    customer_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(45),
+    last_name VARCHAR(45)
+);
+
+CREATE TABLE IF NOT EXISTS movie(
+    movie_id SERIAL PRIMARY KEY,
+    movie_name VARCHAR(30)
+);
+
+CREATE TABLE IF NOT EXISTS theater_number(
+    theater_id SERIAL PRIMARY KEY,
+    ticket_cost NUMERIC(5,2)
+);
+
+CREATE TABLE IF NOT EXISTS movie_runtimes(
+    runtime_id SERIAL,
+    showtime TIME PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS movie_showing(
+    showing_id SERIAL PRIMARY KEY,
+    movie_id INTEGER NOT NULL,
+    theater_id INTEGER NOT NULL,
+    showtime TIME NOT NULL,
+    FOREIGN KEY(movie_id) REFERENCES movie(movie_id),
+    FOREIGN KEY(theater_id) REFERENCES theater_number(theater_id),
+    FOREIGN KEY(showtime) REFERENCES movie_runtimes(showtime)
+);
+
+CREATE TABLE IF NOT EXISTS ticket(
+    ticket_id SERIAL PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    showing_id INTEGER NOT NULL,
+    FOREIGN KEY(customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY(showing_id) REFERENCES movie_showing(showing_id)
+);
+
+CREATE TABLE IF NOT EXISTS total_cost(
+    total_id SERIAL PRIMARY KEY,
+    ticket_id INTEGER,
+    total NUMERIC(5,2),
+    FOREIGN KEY(ticket_id) REFERENCES ticket(ticket_id)
+);
+
+INSERT INTO customer(
+    first_name,
+    last_name
+) VALUES (
+    'Amanda',
+    'Lord'
+);
+
+INSERT INTO movie(
+    movie_name
+)VALUES(
+    'Top Gun'
+);
+
+INSERT INTO theater_number(
+    ticket_cost
+)VALUES (
+    16.99
+);
+
+INSERT INTO movie_runtimes(
+    showtime
+)VALUES(
+    '18:30:00'
+);
+
+INSERT INTO movie_showing(
+    movie_id,
+    theater_id,
+    showtime
+)VALUES(
+    1,
+    2,
+    '18:30:00'
+);
+
+SELECT *
+FROM movie_showing
+
+INSERT INTO ticket(
+    customer_id,
+    showing_id
+)VALUES(
+    2,
+    5
+);
+
+SELECT *
+FROM ticket;
+
+INSERT INTO total_cost(
+    ticket_id
+)

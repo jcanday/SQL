@@ -1,0 +1,60 @@
+INSERT INTO customer(
+    first_name,
+    last_name,
+    address,
+    billing_info
+) VALUES (
+    'Amanda',
+    'Lord',
+    '124 Main St, Philadelphia, PA 19125',
+    '4242-4242-4242-4242 111 06/24'
+);
+
+SELECT *
+FROM customer;
+
+INSERT INTO vendor(
+    contact_number,
+    vendor_name,
+    address
+) VALUES(
+    '1 800-FLOWERS',
+    'FLOWERS',
+    '346 Main St. Chicago, IL 60606'
+);
+
+SELECT *
+FROM vendor;
+
+INSERT INTO product(
+    product_name,
+    amount,
+    vendor_id
+)VALUES(
+    'Bouquet of Roses',
+    20.00,
+    2
+);
+
+INSERT INTO order_(
+    sub_total,
+    total,
+    customer_id
+) VALUES (
+    200.00,
+    220.00,
+    1
+);
+
+INSERT INTO order_detail(
+    item_id,
+    order_id,
+    quantity
+)VALUES(
+    2,
+    1,
+    5
+);
+
+SELECT *
+FROM product;
