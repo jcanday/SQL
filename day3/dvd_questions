@@ -42,6 +42,13 @@ FROM payment
 GROUP BY staff_id
 ORDER BY pcount DESC
 ) AS TEMP limit 1
+-- SELECT first_name, last_name, staff.staff_id, COUNT(payment_id)
+-- FROM staff
+-- INNER JOIN payment
+-- ON payment.staff_id = staff.staff_id
+-- GROUP BY first_name, last_name, staff.staff_id
+-- ORDER BY COUNT(payment_id) DESC
+-- FETCH FIRST ROW ONLY;
 
 --6.
 SELECT COUNT(film_id),rating
